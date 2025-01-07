@@ -1,0 +1,23 @@
+# PostgreSQL Version: It is configured to use version 16.
+# POSTGRES_HOST_AUTH_METHOD: trust:
+#   - Removes the need for a password in development mode.
+#
+# Warning: This should only be used for development purposes, as it is not secure for production.
+# Without POSTGRES_USER and POSTGRES_PASSWORD:
+#   - PostgreSQL will use the default 'postgres' user without a password.
+
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    container_name: postgres_dev
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
